@@ -1,0 +1,5 @@
+RGBConverter	KEYWORD1
+rgbToHsl	KEYWORD2
+hslToRgb	KEYWORD2
+rgbToHsv	KEYWORD2
+hsvToRgb	KEYWORD2
