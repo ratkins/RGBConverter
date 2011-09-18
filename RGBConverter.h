@@ -70,8 +70,8 @@ public:
     void hsvToRgb(double h, double s, double v, byte rgb[]);
      
 private:
-    byte threeway_max(byte a, byte b, byte c);
-    byte threeway_min(byte a, byte b, byte c);
+    double threeway_max(double a, double b, double c);
+    double threeway_min(double a, double b, double c);
     double hue2rgb(double p, double q, double t);
 };
 

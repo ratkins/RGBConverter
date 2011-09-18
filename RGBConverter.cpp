@@ -23,24 +23,24 @@
  * @return  Array           The HSL representation
  */
 void RGBConverter::rgbToHsl(byte r, byte g, byte b, double hsl[]) { 
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    byte max = threeway_max(r, g, b);
-    byte min = threeway_min(r, g, b);
-    byte h, s, l = (max + min) / 2;
+    double rd = (double) r/255;
+    double gd = (double) g/255;
+    double bd = (double) b/255;
+    double max = threeway_max(rd, gd, bd);
+    double min = threeway_min(rd, gd, bd);
+    double h, s, l = (max + min) / 2;
 
     if (max == min) {
         h = s = 0; // achromatic
     } else {
-        byte d = max - min;
+        double d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        if (max == r) {
-            h = (g - b) / d + (g < b ? 6 : 0);
-        } else if (max == g) {
-            h = (b - r) / d + 2;
+        if (max == rd) {
+            h = (gd - bd) / d + (gd < bd ? 6 : 0);
+        } else if (max == gd) {
+            h = (bd - rd) / d + 2;
         } else if (max == b) {
-            h = (r - g) / d + 4;
+            h = (rd - gd) / d + 4;
         }
         h /= 6;
     }
@@ -90,8 +90,10 @@ void RGBConverter::hslToRgb(double h, double s, double l, byte rgb[]) {
  * @return  Array           The HSV representation
  */
 void RGBConverter::rgbToHsv(byte r, byte g, byte b, double hsv[]) {
-    r = r/255, g = g/255, b = b/255;
-    byte max = threeway_max(r, g, b), min = threeway_min(r, g, b);
+    double rd = (double) r/255;
+    double gd = (double) g/255;
+    double bd = (double) b/255;
+    double max = threeway_max(rd, gd, bd), min = threeway_min(rd, gd, bd);
     double h, s, v = max;
 
     double d = max - min;
@@ -100,12 +102,12 @@ void RGBConverter::rgbToHsv(byte r, byte g, byte b, double hsv[]) {
     if (max == min) { 
         h = 0; // achromatic
     } else {
-        if (max == r) {
-            h = (g - b) / d + (g < b ? 6 : 0);
-        } else if (max == g) {
-            h = (b - r) / d + 2;
-        } else if (max == b) {
-            h = (r - g) / d + 4;
+        if (max == rd) {
+            h = (gd - bd) / d + (gd < bd ? 6 : 0);
+        } else if (max == gd) {
+            h = (bd - rd) / d + 2;
+        } else if (max == bd) {
+            h = (rd - gd) / d + 4;
         }
         h /= 6;
     }
@@ -149,11 +151,11 @@ void RGBConverter::hsvToRgb(double h, double s, double v, byte rgb[]) {
     rgb[2] = b * 255;
 }
  
-byte RGBConverter::threeway_max(byte a, byte b, byte c) {
+double RGBConverter::threeway_max(double a, double b, double c) {
     return max(a, max(b, c));
 }
 
-byte RGBConverter::threeway_min(byte a, byte b, byte c) {
+double RGBConverter::threeway_min(double a, double b, double c) {
     return min(a, min(b, c));
 }
 
