@@ -1,3 +1,5 @@
+NOTE: This code has been fairly much obviated by the HSV-RGB functions in the new FastSPI 2 library (http://code.google.com/p/fastspi/)
+
 /*
  * RGBConverter.h - Arduino library for converting between RGB, HSV and HSL
  * 
