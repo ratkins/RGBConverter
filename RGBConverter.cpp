@@ -39,7 +39,7 @@ void RGBConverter::rgbToHsl(byte r, byte g, byte b, double hsl[]) {
             h = (gd - bd) / d + (gd < bd ? 6 : 0);
         } else if (max == gd) {
             h = (bd - rd) / d + 2;
-        } else if (max == b) {
+        } else if (max == bd) {
             h = (rd - gd) / d + 4;
         }
         h /= 6;
